@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRO - Issues Reporting Outlet</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #2ecc71;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #eef2f5; color: var(--dark); padding: 20px; }
+        header { background: var(--primary); color: white; padding: 20px; text-align: center; border-radius: 8px; margin-bottom: 20px; }
+        header p { font-size: 0.9rem; opacity: 0.9; margin-top: 5px; }
+        .container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+        .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        h2 { margin-bottom: 15px; color: var(--primary); font-size: 1.3rem; border-bottom: 2px solid #eee; padding-bottom: 8px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
+        input[type="text"], select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.95rem; }
+        textarea { resize: vertical; height: 100px; }
+        .checkbox-group { display: flex; align-items: center; gap: 10px; margin: 15px 0; }
+        .checkbox-group input { width: 18px; height: 18px; }
+        button { background: var(--primary); color: white; border: none; padding: 12px 20px; width: 100%; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: #1a252f; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
+        .badge.pending { background: #ffeaa7; color: #d63031; }
+        .badge.resolved { background: #c2f0c2; color: #27ae60; }
+        .issue-item { padding: 15px; border-bottom: 1px solid #eee; }
+        .issue-item:last-child { border-bottom: none; }
+        .issue-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .issue-meta { font-size: 0.8rem; color: #7f8c8d; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>IRO - Issues Reporting Outlet</h1>
+        <p>Securing AAUA Students & Host Communities (Akungba, Iwaro, Etioro, Ayegunle)</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Report an Incident / Grievance</h2>
+            <form id="reportForm" onsubmit="alert('Issue submitted successfully to IRO Core.'); return false;">
+                <div class="form-group">
+                    <label for="reporterType">I am a:</label>
+                    <select id="reporterType" required>
+                        <option value="student">AAUA Student</option>
+                        <option value="indigene">Community Indigene</option>
+                        <option value="resident">Non-Indigene Resident</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location / Settlement:</label>
+                    <select id="location" required>
+                        <option value="Akungba">Akungba</option>
+                        <option value="Iwaro">Iwaro</option>
+                        <option value="Etioro">Etioro</option>
+                        <option value="Ayegunle">Ayegunle</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Issue Category:</label>
+                    <select id="category" required>
+                        <option value="Security">Security Threat / Harassment</option>
+                        <option value="Rent">Landlord-Tenant / Rent Dispute</option>
+                        <option value="Exploitation">Commodity Price Exploitation</option>
+                        <option value="Infrastructure">Infrastructural Deficit (Power/Water)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="details">Detailed Description:</label>
+                    <textarea id="details" placeholder="Provide clear details regarding the incident..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="evidence">Upload Evidence (Image/Receipt):</label>
+                    <input type="file" id="evidence" accept="image/*">
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="anonymous">
+                    <label for="anonymous">Submit this report anonymously (Hide my identity)</label>
+                </div>
+
+                <button type="submit">Submit Report to Arbiters</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Recent Community Outlets & Tracking</h2>
+            <div id="issuesList">
+                <div class="issue-item">
+                    <div class="issue-header">
+                        <strong>Exorbitant Hike in Shuttle Fares</strong>
+                        <span class="badge pending">Pending</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #555;">Shuttle drivers charging double prices from morning rush hour at Akungba junction.</p>
+                    <div class="issue-meta">📍 Location: Akungba | Category: Price Exploitation</div>
+                </div>
+
+                <div class="issue-item">
+                    <div class="issue-header">
+                        <strong>Landlord Notice Arbitrary Eviction</strong>
+                        <span class="badge resolved">Resolved</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #555;">Massive rent increments without statutory 6-month notification given to student tenants.</p>
+                    <div class="issue-meta">📍 Location: Iwaro | Category: Rent Dispute</div>
+                </div>
+                
+                <div class="issue-item">
+                    <div class="issue-header">
+                        <strong>Power Outage Grid Breakdown</strong>
+                        <span class="badge pending">Pending</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #555;">Transformer damage causing total blackout affecting student residential clusters.</p>
+                    <div class="issue-meta">📍 Location: Ayegunle | Category: Infrastructure</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
